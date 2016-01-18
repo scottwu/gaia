@@ -101,7 +101,9 @@ module.exports = {
   },
 
   Commander: function(cmd) {
-    this.initPath = function() {};
+    this.initPath = function(path) {
+      this.path = path;
+    };
     this.run = function(args, callback) {
       var q = Q.defer();
       var cmds = args.join(' ');
@@ -112,7 +114,7 @@ module.exports = {
       if (cmd === 'sh') {
         cmds = cmds.replace(/^-c/, '');
       } else {
-        cmds = cmd + ' ' + cmds;
+        cmds = this.path + '/' + cmd + ' ' + cmds;
       }
       console.log(cmds);
       // XXX: Most cmds should run synchronously, we should use either promise
