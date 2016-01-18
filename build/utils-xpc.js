@@ -1289,6 +1289,10 @@ function normalizePath(path) {
   return OS.Path.normalize(path);
 }
 
+function exit(exitValue) {
+  return quit(exitValue);
+}
+
 exports.Q = Promise;
 exports.ls = ls;
 exports.getFileContent = getFileContent;
@@ -1355,3 +1359,4 @@ exports.relativePath = relativePath;
 exports.normalizePath = normalizePath;
 exports.getUUIDMapping = getUUIDMapping;
 exports.getMD5hash = getMD5hash;
+exports.exit = exit;

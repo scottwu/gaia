@@ -1,12 +1,10 @@
 'use strict';
 
-/* global exports, require, quit */
-
 /**
  * This script is used to run test case for gaia build system.
  */
 
-var utils = require('utils');
+var utils = require('./utils');
 
 exports.execute = function(options) {
   var TEST_TYPE = utils.getEnv('TEST_TYPE');
@@ -22,7 +20,8 @@ exports.execute = function(options) {
     '--harmony',
     '--reporter', REPORTER,
     '--ui', 'tdd',
-    '--timeout', TIMEOUT
+    '--timeout', TIMEOUT,
+    '--colors'
   ];
 
   // Specify build test libraries path for build script testing
@@ -69,6 +68,6 @@ exports.execute = function(options) {
   var mocha = new utils.Commander('mocha');
   mocha.initPath(utils.getFile(options.GAIA_DIR, 'node_modules', '.bin').path);
   mocha.run(args, function(exitValue) {
-    quit(exitValue);
+    console.log(exitValue);
   });
 };
